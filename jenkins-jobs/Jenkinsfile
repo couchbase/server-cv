@@ -336,6 +336,8 @@ def getNodeLabel() {
 def getManifestFileName() {
     if (env.BRANCH_NAME == 'master') {
         return 'branch-master.xml'
+    } else if (env.BRANCH_NAME == '6.5.0') {
+        return "couchbase-server/mad-hatter/${env.BRANCH_NAME}.xml"
     } else {
         return "couchbase-server/${env.BRANCH_NAME}.xml"
     }
