@@ -437,6 +437,8 @@ def getPatchViaGerritURL() {
 def getManifestFileName() {
     if (env.BRANCH_NAME == 'master') {
         return 'branch-master.xml'
+    } else if (env.BRANCH_NAME  ==~ /7\.6\.\d/) {
+        return "couchbase-server/trinity/${env.BRANCH_NAME}.xml"
     } else {
         return "couchbase-server/${env.BRANCH_NAME}.xml"
     }
