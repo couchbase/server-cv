@@ -3,6 +3,4 @@ return {
     // (they don't use unique filenames for example). Therefore must
     // run tests sequentially.
     TEST_PARALLELISM=1
-
-    WARNING_THRESHOLD=45
 }
