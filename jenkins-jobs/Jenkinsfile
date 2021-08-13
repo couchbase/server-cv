@@ -172,10 +172,7 @@ pipeline {
                     // However this may not currently work on windows
 
                     manifestFile: "${getManifestFileName()}",
-                    // cb-master branch (forestdb specific) - include
-                    // 'forestdb' project in checkout (it is not otherwise part
-                    // of 'kv' group or similar).
-                    manifestGroup: 'build,kv,kv_ee,name:forestdb',
+                    manifestGroup: "${getManifestGroup()}",
                     manifestRepositoryUrl: 'git://github.com/couchbase/manifest.git',
                     quiet: true,
                     resetFirst: false])
@@ -428,6 +425,20 @@ def getManifestFileName() {
         return 'branch-master.xml'
     } else {
         return "couchbase-server/${env.BRANCH_NAME}.xml"
+    }
+}
+
+def getManifestGroup() {
+    // For projects part of kv_engine (kv_engine, platform, couchstore, ...)
+    // we don't want to checkout _all_ repos as that is unnecessary. However
+    // we also support forestdb here which isn't part of kv_engine now and
+    // hence needs all repos (checking out just forestdb additionally doesn't)
+    // work as we must build without COUCHBASE_KV_COMMIT_VALIDATION and
+    // hence need all repos present to keep the top-level CMakeFile happy).
+    if (env.GERRIT_PROJECT == "forestdb") {
+        return 'build,all'
+    } else {
+        return 'build,kv,kv_ee'
     }
 }
 
