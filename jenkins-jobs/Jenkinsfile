@@ -168,7 +168,10 @@ pipeline {
                     // However this may not currently work on windows
 
                     manifestFile: "${getManifestFileName()}",
-                    manifestGroup: 'build,kv,kv_ee',
+                    // cb-master branch (forestdb specific) - include
+                    // 'forestdb' project in checkout (it is not otherwise part
+                    // of 'kv' group or similar).
+                    manifestGroup: 'build,kv,kv_ee,name:forestdb',
                     manifestRepositoryUrl: 'git://github.com/couchbase/manifest.git',
                     quiet: true,
                     resetFirst: false])
