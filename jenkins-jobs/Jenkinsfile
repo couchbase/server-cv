@@ -182,6 +182,13 @@ pipeline {
                 // Wipe out any core files left from a previous run.
                 sh ' rm -f /tmp/core.*'
 
+                // CBD-4443: remove any existing install dir to workaround cbpy issue
+                script {
+                    if (fileExists('install')) {
+                        sh ' rm -rf ./install'
+                    }
+                }
+
                 script {
                     if (env.ENABLE_CBDEPS_TESTING) {
                         sh 'rm -rf ~/.cbdepscache'
