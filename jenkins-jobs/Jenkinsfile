@@ -417,7 +417,7 @@ def getNodeLabel() {
             osLabel = LINUX_NODE_LABEL
             break;
     }
-    return "${osLabel} && ${env.BRANCH_NAME}"
+    return "${osLabel} && neo"
 }
 
 def getPatchViaGerritURL() {
