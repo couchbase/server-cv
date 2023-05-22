@@ -437,6 +437,10 @@ def getPatchViaGerritURL() {
 def getManifestFileName() {
     if (env.BRANCH_NAME == 'master') {
         return 'branch-master.xml'
+    } else if (env.BRANCH_NAME  == '7.1.x') {
+        // Branch 7.1.x is currently used for 7.1.5.xml manifest; if/when we
+        // start work on 7.1.6 this should be updated.
+        return "couchbase-server/neo/7.1.5.xml"
     } else if (env.BRANCH_NAME  ==~ /7\.1\.\d/) {
         return "couchbase-server/neo/${env.BRANCH_NAME}.xml"
     } else {
