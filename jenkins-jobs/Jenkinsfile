@@ -413,7 +413,7 @@ def getNodeLabel() {
             break;
         case "aarch64-linux":
         case "aarch64-linux-CE":
-            osLabel = "aarch64 && amzn2"
+            osLabel = "aarch64 && linux"
             break;
         default:
             osLabel = LINUX_NODE_LABEL
