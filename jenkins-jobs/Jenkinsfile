@@ -415,7 +415,8 @@ def getNodeLabel() {
             osLabel = LINUX_NODE_LABEL
             break;
     }
-    return "${osLabel} && ${env.BRANCH_NAME}"
+    // Use the label trinity for this 7.6.2 branch
+    return "${osLabel} && trinity"
 }
 
 def getPatchViaGerritURL() {
