@@ -417,7 +417,8 @@ def getNodeLabel() {
             osLabel = LINUX_NODE_LABEL
             break;
     }
-    return "${osLabel} && ${env.BRANCH_NAME}"
+    // Using neo for 7.2.2
+    return "${osLabel} && neo"
 }
 
 def getPatchViaGerritURL() {
@@ -437,6 +438,8 @@ def getPatchViaGerritURL() {
 def getManifestFileName() {
     if (env.BRANCH_NAME == 'master') {
         return 'branch-master.xml'
+    } else if (env.BRANCH_NAME  ==~ /7\.2\.\d/) {
+        return "couchbase-server/neo/${env.BRANCH_NAME}.xml"
     } else {
         return "couchbase-server/${env.BRANCH_NAME}.xml"
     }
