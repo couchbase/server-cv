@@ -536,7 +536,7 @@ def reportWarnings() {
 
     warnings(canComputeNew: false, canResolveRelativePaths: false,
              categoriesPattern: '', consoleParsers: [[parserName: parser]],
-             defaultEncoding: '', excludePattern: '',
+             defaultEncoding: '', excludePattern: '.*\\.exploded[/\\\\].*',
              failedTotalAll: failedTotal, healthy: '',
              includePattern: '.*[/\\\\]' + getProjectName() + '[/\\\\].*',
              messagesPattern: '', unHealthy: '')
