@@ -531,7 +531,7 @@ def reportWarnings() {
     if (getJobName() == 'clang_analyzer') {
         parser = 'Clang (LLVM based)'
     } else {
-        parser = 'GNU C Compiler (gcc)'
+        parser = 'GNU Make + GNU C Compiler (gcc)'
     }
 
     warnings(canComputeNew: false, canResolveRelativePaths: false,
