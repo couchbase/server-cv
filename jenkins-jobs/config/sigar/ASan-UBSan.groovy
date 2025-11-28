@@ -1,8 +1,3 @@
 return {
-    // Unset the variables set to use clang-9 as it doesn't play well
-    // with the full server build
-    CC=""
-    CXX=""
-    CFLAGS=""
-    CXXFLAGS=""
+    CMAKE_ARGS="${CMAKE_ARGS} -DCOUCHBASE_KV_COMMIT_VALIDATION=1"
 }
