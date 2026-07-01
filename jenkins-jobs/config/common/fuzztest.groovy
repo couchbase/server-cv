@@ -2,10 +2,11 @@ import java.time.*
 return {
     // Every day, sometime between 00:00 and 05:00
     CRON_SCHEDULE="H H(0-5) * * *"
-    CC="/opt/clang-18.1.8/bin/clang-18"
-    CXX="/opt/clang-18.1.8/bin/clang++-18"
-    CFLAGS="--gcc-toolchain=/opt/gcc-13.2.0 -Wl,-rpath,/opt/gcc-13.2.0/lib64"
-    CXXFLAGS="--gcc-toolchain=/opt/gcc-13.2.0 -Wl,-rpath,/opt/gcc-13.2.0/lib64"
+
+    CC="clang-19"
+    CXX="clang++-19"
+    PATH="/opt/clang-19.1.1/bin:" + "${PATH}"
+
     CMAKE_ARGS="${CMAKE_ARGS} -DCB_ADDRESSSANITIZER=ON -DFUZZTEST_FUZZING_MODE=ON"
     // Time budget for fuzzing (per test).
     if (LocalDate.now().getDayOfWeek() == DayOfWeek.SATURDAY) {
@@ -18,4 +19,7 @@ return {
     ADDITIONAL_ARTIFACTS="**/*_fuzztest_*.log"
     LOG_RETENTION_DAYS="30"
     ARTIFACT_RETENTION_DAYS="30"
+
+    // Enable code coverage for unit tests.
+    ENABLE_CODE_COVERAGE=true
 }
