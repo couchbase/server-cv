@@ -19,7 +19,4 @@ return {
     ADDITIONAL_ARTIFACTS="**/*_fuzztest_*.log"
     LOG_RETENTION_DAYS="30"
     ARTIFACT_RETENTION_DAYS="30"
-
-    // Enable code coverage for unit tests.
-    ENABLE_CODE_COVERAGE=true
 }
