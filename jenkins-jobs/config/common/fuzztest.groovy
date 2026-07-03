@@ -5,7 +5,7 @@ return {
 
     CC="clang-19"
     CXX="clang++-19"
-    PATH="/opt/clang-19.1.1/bin:" + "${PATH}"
+    PATH="/opt/clang-19.1.1/bin:/opt/gcc-15.2.0/bin:" + "${PATH}"
 
     CMAKE_ARGS="${CMAKE_ARGS} -DCB_ADDRESSSANITIZER=ON -DFUZZTEST_FUZZING_MODE=ON"
     // Time budget for fuzzing (per test).
@@ -19,4 +19,7 @@ return {
     ADDITIONAL_ARTIFACTS="**/*_fuzztest_*.log"
     LOG_RETENTION_DAYS="30"
     ARTIFACT_RETENTION_DAYS="30"
+
+    // Enable code coverage for unit tests.
+    ENABLE_CODE_COVERAGE=true
 }
