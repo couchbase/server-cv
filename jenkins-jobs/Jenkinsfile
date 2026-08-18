@@ -172,13 +172,6 @@ pipeline {
                     // RAM (e.g. 16 cores, 16 GB RAM).
                     if (env.PARALLELISM) {
                        link_parallelism = ((env.PARALLELISM as Integer) / 2)
-                       // Temporary fix: cap link parallelism to 4 on Linux -
-                       // we've seen "bus error" failures reported, suspected
-                       // to be caused by the link step consuming too much
-                       // memory when run with higher parallelism.
-                       if (getJobType() != "windows" && getJobType() != "macos") {
-                           link_parallelism = Math.min(link_parallelism, 4)
-                       }
                        env.CMAKE_ARGS="${CMAKE_ARGS} -DCB_PARALLEL_LINK_JOBS=${link_parallelism}"
                     }
 
