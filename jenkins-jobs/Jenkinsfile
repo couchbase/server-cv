@@ -197,6 +197,12 @@ pipeline {
                 sh 'ulimit -a'
                 echo ""
                 sh 'env | grep -iv password | grep -iv passwd | sort'
+
+                script {
+                    if (isUnix()) {
+                        sh 'df -h'
+                    }
+                }
             }
         }
 
@@ -396,6 +402,10 @@ pipeline {
     post {
         always {
             script {
+                if (isUnix()) {
+                    sh 'df -h'
+                }
+
                 if (shouldRunUnitTests()) {
                     xunit(testTimeMargin: '3000', thresholdMode: 1,
                           thresholds: [failed(failureThreshold: '0'),
