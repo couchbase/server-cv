@@ -550,7 +550,7 @@ def getManifestGroup() {
     // we don't want to checkout _all_ repos as that is unnecessary. However
     // we also support CV for other projects (e.g. tlm, sigar) where we want to
     // build as EE and hence need 'enterprise' repos.
-    if (["tlm", "sigar"].contains(env.GERRIT_PROJECT)) {
+    if (["tlm", "sigar", "forestdb"].contains(env.GERRIT_PROJECT)) {
         return 'default,build,enterprise'
     } else {
         return 'build,kv,kv_ee'
